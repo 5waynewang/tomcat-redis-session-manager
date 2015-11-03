@@ -502,7 +502,7 @@ public class RedisSessionManager extends ManagerBase implements Lifecycle {
     // Do nothing.
   }
 
-  private void initializeDatabaseConnection() throws LifecycleException {
+  void initializeDatabaseConnection() throws LifecycleException {
     try {
       // TODO: Allow configuration of pool (such as size...)
       connectionPool = new JedisPool(new JedisPoolConfig(), getHost(), getPort(), getTimeout(), getPassword());
@@ -512,7 +512,7 @@ public class RedisSessionManager extends ManagerBase implements Lifecycle {
     }
   }
 
-  private void initializeSerializer() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
+  void initializeSerializer() throws ClassNotFoundException, IllegalAccessException, InstantiationException {
     log.info("Attempting to use serializer :" + serializationStrategyClass);
     serializer = (Serializer) Class.forName(serializationStrategyClass).newInstance();
 
